@@ -18,7 +18,7 @@ def main():
         user="fasten",
         password="fasten1234")
         cur = conn.cursor()
-        query = "SELECT * FROM dependencies"
+        query = "SELECT * FROM packages"
         cur.execute(query)
         result = cur.fetchall()
         for row in result:
