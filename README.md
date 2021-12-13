@@ -1,6 +1,6 @@
 # debian-feeder
 
-To test the debian-feeder, it is easier using the docker-compose deployment:
+To test the debian-feeder, it is easier to use the docker-compose deployment:
 
 First install docker-compose:
 
