@@ -13,7 +13,7 @@ Then, cloning and compiling:
 ```
 cd 
 git clone git@github.com:endocode/debian-feeder.git
-sudo apt-get install libpq-dev
+sudo apt-get install -y libpq-dev
 sudo apt-get update -y
 sudo apt-get install -y python3-psycopg2
 cd debian-feeder
