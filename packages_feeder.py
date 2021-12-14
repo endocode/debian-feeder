@@ -7,7 +7,7 @@ package_name = "testing_packages_feeder_return_id_3rd_test"
 forge = "Debian"
 
 def insert_package(package_name, forge):
-    """ insert a new vendor into the packages table """
+    """ insert a new package into the packages table """
     sql = """INSERT INTO packages(package_name, forge) VALUES(%s, %s) RETURNING id"""
     conn = None
     id = None

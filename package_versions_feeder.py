@@ -3,12 +3,15 @@
 import psycopg2
 from config import config
 
-package_name = "0xffff"
-forge = "Debian"
+package_name = "testing_packages_feeder_return_id_3rd_test"
+# this package id should be retrieved using the package_id_retriever function
+package_id = 9
+version = "1.0.0"
+cg_generator = "CScout"
 
-def retrieve_id(package_name):
-    """ retrieve a package id from the packages table """
-    sql = """select id from packages where package_name = %s"""
+def insert_package_versions(package_id, version, cg_generator):
+    """ insert a new package versions into the package versions table """
+    sql = """INSERT INTO package_versions(package_id, version, cg_generator) VALUES(%s, %s, %s) RETURNING id"""
     conn = None
     id = None
     try:
@@ -19,7 +22,7 @@ def retrieve_id(package_name):
         # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
-        cur.execute(sql, (package_name,))
+        cur.execute(sql, (package_id, version, cg_generator))
         # get the generated id back
         id = cur.fetchone()[0]
         # commit the changes to the database
@@ -31,8 +34,8 @@ def retrieve_id(package_name):
     finally:
         if conn is not None:
             conn.close()
-    print("The id of "+package_name+" is: "+str(id))
+    print("The package_version id of "+package_name+" "+version+" is: "+str(id))
     return id
 
 if __name__ == '__main__':
-    retrieve_id(package_name)
+    insert_package_versions(package_id, version, cg_generator)
