@@ -23,7 +23,7 @@ def main():
         cur = conn.cursor()
         #query = "SELECT * FROM packages"
         #query = "INSERT INTO packages(package_name, forge, project_name, repository, created_at) VALUES(%s, %s, %s, %s, %s )"
-        query = "INSERT INTO packages(package_name, forge) VALUES(%s, %s, %s)"
+        query = "INSERT INTO packages(package_name, forge) VALUES(%s, %s)"
         #val = (str(packageName))
         package_name = ("0xffff")
         forge = ("Debian")
