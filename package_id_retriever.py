@@ -3,12 +3,12 @@
 import psycopg2
 from config import config
 
-package_name = "testing_packages_feeder_return_id_3rd_test"
+package_name = "0xffff"
 forge = "Debian"
 
-def insert_package(package_name, forge):
+def retrieve_id(package_name):
     """ insert a new vendor into the packages table """
-    sql = """INSERT INTO packages(package_name, forge) VALUES(%s, %s) RETURNING id"""
+    sql = """select id from packages where package_name = %s"""
     conn = None
     id = None
     try:
@@ -19,8 +19,7 @@ def insert_package(package_name, forge):
         # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
-        cur.execute(sql, (package_name, forge,))
-
+        cur.execute(sql, (package_name,))
         # get the generated id back
         id = cur.fetchone()[0]
         # commit the changes to the database
@@ -36,4 +35,4 @@ def insert_package(package_name, forge):
     return id
 
 if __name__ == '__main__':
-    insert_package(package_name, forge)
+    retrieve_id(package_name)
