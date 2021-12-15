@@ -27,11 +27,8 @@ def insert_package(package_name, forge):
     conn = None
     id = None
     try:
-        # read database configuration
         params = config()
-        # connect to the PostgreSQL database
         conn = psycopg2.connect(**params)
-        # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
         cur.execute(sql, (package_name, forge,))
@@ -55,14 +52,11 @@ def insert_package_versions(package_id, version, cg_generator):
     conn = None
     id = None
     try:
-        # read database configuration
         params = config()
-        # connect to the PostgreSQL database
         conn = psycopg2.connect(**params)
-        # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
-        cur.execute(sql, (package_id, version, cg_generator))
+        cur.execute(sql, (package_id, version, cg_generator,))
         # get the generated id back
         id = cur.fetchone()[0]
         # commit the changes to the database
@@ -83,11 +77,8 @@ def retrieve_id_package(package_name):
     conn = None
     id = None
     try:
-        # read database configuration
         params = config()
-        # connect to the PostgreSQL database
         conn = psycopg2.connect(**params)
-        # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
         cur.execute(sql, (package_name,))
@@ -111,11 +102,8 @@ def retrieve_id_package_versions(package_id, version):
     conn = None
     id = None
     try:
-        # read database configuration
         params = config()
-        # connect to the PostgreSQL database
         conn = psycopg2.connect(**params)
-        # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
         cur.execute(sql, (package_id, version,))
@@ -140,15 +128,11 @@ def insert_files(package_version_id, path, checksum):
     conn = None
     id = None
     try:
-        # read database configuration
         params = config()
-        # connect to the PostgreSQL database
         conn = psycopg2.connect(**params)
-        # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
         cur.execute(sql, (package_version_id, path, checksum,))
-
         # get the generated id back
         id = cur.fetchone()[0]
         # commit the changes to the database
