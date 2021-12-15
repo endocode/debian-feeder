@@ -5,10 +5,12 @@ from config import config
 
 package_name = "0xffff"
 forge = "Debian"
+package_id = 9
+version = "1.0.0"
 
-def retrieve_id_package(package_name):
-    """ retrieve a package id from the packages table """
-    sql = """select id from packages where package_name = %s"""
+def retrieve_id_package_versions(package_id, version):
+    """ retrieve a package id from the package_versions table """
+    sql = """select id from package_versions where package_id = %s AND version = %s """
     conn = None
     id = None
     try:
@@ -19,7 +21,7 @@ def retrieve_id_package(package_name):
         # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
-        cur.execute(sql, (package_name,))
+        cur.execute(sql, (package_id, version,))
         # get the generated id back
         id = cur.fetchone()[0]
         # commit the changes to the database
@@ -31,8 +33,8 @@ def retrieve_id_package(package_name):
     finally:
         if conn is not None:
             conn.close()
-    print("The id of "+package_name+" is: "+str(id))
+    print("The package versions id of the package id "+str(package_id)+", version "+ version +" is: "+str(id))
     return id
 
 if __name__ == '__main__':
-    retrieve_id_package(package_name)
+    retrieve_id_package_versions(package_id, version)
