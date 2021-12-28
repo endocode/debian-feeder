@@ -32,7 +32,7 @@ cd fasten-docker-deployment/
 docker-compose --profile c up -d
 ```
 
-Then, clone and compile the debian-feeder:
+Then, clone, and compile the debian-feeder, and bring the `c` profile up:
 
 ```
 cd 
